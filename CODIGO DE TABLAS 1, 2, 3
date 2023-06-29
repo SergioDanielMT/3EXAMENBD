@@ -1,0 +1,308 @@
+-------------- TABLA 1 ------------------
+create table tuno (
+idp number(10),
+nombre varchar(50),
+precio number(10),
+numtipo number(10),
+numar number(10)
+);
+
+drop table tuno;
+
+-------TABLA DE REGISTROS CON LETRA INICIAL T ------------------
+
+create table extra(
+mensa varchar (100));
+
+drop table extra;
+
+create or replace trigger vitamina
+before insert 
+on tuno
+for each row when(new.nombre like 't%')
+begin
+    insert into extra values('Se inserto un producto con la vitamina " T " que es: '  || :new.nombre);
+    end vitamina;
+
+
+insert into tuno values(1,'tamal de mole',20,1,1);
+insert into tuno values(2,'tamal de verde',20,1,1);
+insert into tuno values(3,'tamal de rajas',20,1,1);
+insert into tuno values(4,'tamal de dulce',20,1,1);
+insert into tuno values(5,'tamal de zaramora',20,1,1);
+insert into tuno values(6,'tamal de rojo',20,1,1);
+insert into tuno values(7,'tamal de verde oaxaqueño',22,1,1);
+insert into tuno values(8,'tamal de rojo oaxaqueño',22,1,1);
+insert into tuno values(9,'tamal de mole en torta',25,6,1);
+insert into tuno values(10,'tamal de verde en torta',25,6,1);
+insert into tuno values(11,'tamal de rajas en torta',25,6,1);
+insert into tuno values(12,'tamal de dulce en torta',25,6,1);
+insert into tuno values(13,'tamal de zarzamora en torta',25,6,1);
+insert into tuno values(14,'tamal de rojo en torta',25,6,1);
+insert into tuno values(15,'tamal de verde oaxaqueño en torta',25,6,1);
+insert into tuno values(16,'tamal de rojo oaxaqueño en torta',25,6,1);
+insert into tuno values(17,'atole de chocolate',18,2,1);
+insert into tuno values(18,'atole de oreo',18,2,1);
+insert into tuno values(19,'atole de vainilla',18,2,1);
+insert into tuno values(20,'champurrado',18,2,1);
+
+
+insert into tuno values(21,'pizza peperoni',25,3,8);
+insert into tuno values(22,'pizza hawaiana',25,3,8);
+insert into tuno values(23,'pizza ranchera',20,3,8);
+insert into tuno values(24,'pizza teso',20,3,8);
+insert into tuno values(25,'pizza de atun',20,3,8);
+
+insert into tuno values(26,'gordita de chicharron',15,4,4);
+insert into tuno values(27,'gordita de pollo',22,4,4);
+insert into tuno values(28,'gordita de suadero',25,4,4);
+insert into tuno values(29,'gordita de queso',20,4,4);
+insert into tuno values(30,'gordita de chicharron',25,4,6);
+insert into tuno values(31,'gordita de pollo',25,4,6);
+insert into tuno values(32,'gordita de pastor',30,4,6);
+insert into tuno values(33,'gordita de queso',20,4,6);
+
+insert into tuno values(34,'taco de canasta papa',15,5,2);
+insert into tuno values(35,'taco de canasta chicharron',15,5,2);
+insert into tuno values(36,'taco de canasta queso',15,5,2);
+insert into tuno values(37,'taco de canasta frijoles',15,5,2);
+
+insert into tuno values(38,'taco de pastor',18,5,6);
+insert into tuno values(39,'taco de bistec',18,5,6);
+insert into tuno values(40,'taco de suadero',18,5,6);
+insert into tuno values(41,'taco de longanisa',18,5,6);
+insert into tuno values(42,'taco de combinado',20,5,6);
+
+insert into tuno values(43,'taco de suadero',20,5,7);
+insert into tuno values(44,'taco de longanisa',20,5,7);
+insert into tuno values(45,'taco de bistec',20,5,7);
+
+insert into tuno values(46,'torta cubana',40,6,7);
+insert into tuno values(47,'torta hawaiana',35,6,7);
+insert into tuno values(48,'torta de salchicha',40,6,7);
+insert into tuno values(49,'torta de huevo ',25,6,7);
+insert into tuno values(50,'torta de bistec',45,6,7);
+insert into tuno values(51,'TUTESOTORTA',55,6,7);
+insert into tuno values(52,'torta pastor',45,6,7);
+insert into tuno values(53,'torta combinada',50,6,7);
+
+insert into tuno values(54,'torta bistec cn queso',40,6,6);
+insert into tuno values(55,'torta gringa',50,6,6);
+insert into tuno values(56,'torta pastor',45,6,6);
+
+insert into tuno values(57,'BOMBA SITRICA ',30,2,5);
+insert into tuno values(58,'agua de apio',30,2,5);
+insert into tuno values(59,'agua de piña',30,2,5);
+insert into tuno values(60,'agua de alfalfa',30,2,5);
+insert into tuno values(61,'agua de chia',30,2,5);
+
+insert into tuno values(62,'agua de orchata',35,2,2);
+insert into tuno values(63,'agua de jamaica',35,2,2);
+insert into tuno values(64,'agua de carlos kinto',35,2,2);
+insert into tuno values(65,'agua de frutas',35,2,2);
+insert into tuno values(66,'agua de cafe',35,2,2);
+
+insert into tuno values(67,'cafe',12,2,4);
+insert into tuno values(68,'cocas',22,2,6);
+insert into tuno values(69,'boings',22,2,7);
+insert into tuno values(70,'aguas',18,2,3);
+
+insert into tuno values(71,'paletas',5,8,3);
+insert into tuno values(72,'chicles',2,8,3);
+insert into tuno values(73,'gomitas',10,8,3);
+insert into tuno values(74,'chocolates',12,8,3);
+insert into tuno values(75,'tamarindo',12,8,3);
+
+select * from tuno;
+select * from extra;
+
+
+
+------------TABLA 2------------------
+
+create table tdos(
+id number(20) primary key,
+tipo varchar(100));
+
+drop table tdos;
+
+CREATE SEQUENCE seque START WITH 1 INCREMENT BY 1 maxvalue 15;
+
+CREATE OR REPLACE TRIGGER llenartabla2_trigger
+BEFORE INSERT ON tdos
+FOR EACH ROW
+BEGIN
+  IF :NEW.id = 1 THEN
+    :NEW.tipo := 'tamales';
+  ELSIF :NEW.id = 2 THEN
+    :NEW.tipo := 'bebidas';
+  ELSIF :NEW.id = 3 THEN
+    :NEW.tipo := 'pizza';
+  ELSIF :NEW.id = 4 THEN
+    :NEW.tipo := 'gorditas';
+  ELSIF :NEW.id = 5 THEN
+    :NEW.tipo := 'tacos';
+  ELSIF :NEW.id = 6 THEN
+    :NEW.tipo := 'tortas';
+  ELSIF :NEW.id = 7 THEN
+    :NEW.tipo := 'quesadillas';
+  ELSIF :NEW.id = 8 THEN
+    :NEW.tipo := 'dulces';
+  ELSIF :NEW.id = 9 THEN
+    :NEW.tipo := 'alcohol';
+  ELSIF :NEW.id = 10 THEN
+    :NEW.tipo := 'drogas';
+  ELSIF :NEW.id = 11 THEN
+    :NEW.tipo := 'preservativos';
+  ELSIF :NEW.id = 12 THEN
+    :NEW.tipo := 'cuerpos';
+  ELSIF :NEW.id = 13 THEN
+    :NEW.tipo := 'armas';
+  END IF;
+END;
+
+-------INSERCION AUTOMATICA 1 X 1 DE TABLA 3------------------
+-------PRESIONAR UNA SOLA VEZ EL SIGUIENTE COMANDO O 13 VECES------------------
+INSERT INTO tdos (id) VALUES (seque.NEXTVAL);
+
+
+-------INSERCION AUTOMATICA 12 DE UN JALON DE TABLA 3------------------
+-------PRESIONAR UNA SOLA VEZ EL SIGUIENTE COMANDO SI ES QUE EL ANTERIOR PRESIONO IGUAL UNA SOLA VEZ ------------------
+INSERT INTO tdos (id)
+SELECT seque.NEXTVAL FROM DUAL
+CONNECT BY LEVEL <= 12;
+
+select * from tdos;
+
+
+------------TABLA 3------------------
+
+create table tres(
+id number(20) primary key,
+marca varchar(100));
+
+select * from tres;
+drop table tres;
+
+CREATE SEQUENCE seque3 START WITH 1 INCREMENT BY 1 maxvalue 13;
+
+CREATE OR REPLACE TRIGGER triggerllenartabla
+BEFORE INSERT ON tres
+FOR EACH ROW
+BEGIN
+  IF :NEW.id = 1 THEN
+    :NEW.marca := 'EL TIO';
+  ELSIF :NEW.id = 2 THEN
+    :NEW.marca := 'LA CARPA';
+  ELSIF :NEW.id = 3 THEN
+    :NEW.marca := 'EL TRI';
+  ELSIF :NEW.id = 4 THEN
+    :NEW.marca := 'LA DOÑA';
+  ELSIF :NEW.id = 5 THEN
+    :NEW.marca := 'LOS JUGOS';
+  ELSIF :NEW.id = 6 THEN
+    :NEW.marca := 'EL GRINGO';
+  ELSIF :NEW.id = 7 THEN
+    :NEW.marca := 'TESOTORTAS';
+  ELSIF :NEW.id = 8 THEN
+    :NEW.marca := 'CHARLY';
+  ELSIF :NEW.id = 9 THEN
+    :NEW.marca := 'CAVERNA';
+  ELSIF :NEW.id = 10 THEN
+    :NEW.marca := 'PARIENTE';
+  ELSIF :NEW.id = 11 THEN
+    :NEW.marca := 'EL PUNTO';
+  ELSIF :NEW.id = 12 THEN
+    :NEW.marca := 'SEXSHO´P';
+  ELSIF :NEW.id = 13 THEN
+    :NEW.marca := 'DEADLOCK';
+  END IF;
+END;
+-------INSERCION AUTOMATICA 1 X 1 DE TABLA 3------------------
+-------PRESIONAR UNA SOLA VEZ EL SIGUIENTE COMANDO O 13 VECES------------------
+INSERT INTO tres(id) VALUES (seque3.NEXTVAL);
+
+
+-------INSERCION AUTOMATICA 12 DE UN JALON DE TABLA 3------------------
+-------PRESIONAR UNA SOLA VEZ EL SIGUIENTE COMANDO SI ES QUE EL ANTERIOR PRESIONO IGUAL UNA SOLA VEZ ------------------
+INSERT INTO tres (id)
+SELECT seque3.NEXTVAL FROM DUAL
+CONNECT BY LEVEL <= 12;
+
+select * from tuno;
+select * from tdos;
+select * from tres;
+
+----------------FULL JOIN-----------------------
+SELECT t1.nombre, t1.precio, t2.tipo, t3.marca
+FROM tuno t1
+FULL JOIN tdos t2 ON t1.numtipo = t2.id
+FULL JOIN tres t3 ON t1.numar = t3.id;
+
+----------------INNER JOIN-----------------------
+SELECT t1.nombre, t2.marca
+FROM tuno t1
+INNER JOIN tres t2 ON t1.numar = t2.id
+WHERE t2.id = 2;
+
+----------------LEFT JOIN-----------------------
+SELECT t1.nombre, t1.precio,t1.numtipo,t2.id, t2.tipo
+FROM tuno t1
+LEFT JOIN tdos t2 ON t1.numtipo = t2.id;
+
+----------------RIGHT JOIN-----------------------
+SELECT t1.nombre, t1.precio,t1.numar,t3.id, t3.marca
+FROM tuno t1
+RIGHT JOIN tres t3 ON t1.numar = t3.id;
+
+----------------FULL JOIN SIN RELACIÓN-----------------------
+
+SELECT  t1.nombre, t1.precio, t2.tipo, t3.marca
+FROM tuno t1
+FULL JOIN tdos t2 ON t1.numtipo = t2.id
+FULL JOIN tres t3 ON t1.numar = t3.id
+where t1.nombre is null or t2.tipo is null or t3.marca is null;
+
+-------JOIN CON LETRA INICIAL CON B & P------------------
+SELECT t1.nombre
+FROM tuno t1
+FULL JOIN tdos t2 ON t1.numtipo = t2.id
+FULL JOIN tres t3 ON t1.numar = t3.id
+WHERE t1.nombre LIKE 'B%'OR t1.nombre LIKE 'b%' OR t1.nombre LIKE 'p%' OR t1.nombre LIKE 'P%';
+
+
+    
+    select * from tuno;
+    
+--------------- VISTAS ----------------    
+    CREATE VIEW vistaprincipal AS
+SELECT nombre, precio
+FROM tuno;
+
+select * from vistaprincipal;
+
+    CREATE VIEW vistasecu AS
+SELECT tipo
+FROM tdos;
+
+select * from vistasecu;
+
+    CREATE VIEW vistaterce AS
+SELECT marca
+FROM tres;
+
+select * from vistaterce;
+
+CREATE VIEW nombre_vista AS
+SELECT idp, nombre, precio
+FROM tuno
+WHERE precio = 40;
+
+select * from nombre_vista;
+
+CREATE  OR REPLACE VIEW vis AS
+SELECT idp, nombre, precio
+FROM tuno
+WHERE precio >= 30;
+
+select * from vis;
